@@ -19,7 +19,7 @@
     {% for item in news %}
     <div class="card mb-3">
         <div class="card-header">
-            <a href="{% url 'category' item.category.pk %}">Категория: {{ item.category }}</a>
+            Категория: <a href="{% url 'category' item.category.pk %}"> {{ item.category }}</a>
         </div>
         <div class="card-body">
             <div class="media">
