@@ -1,8 +1,15 @@
 from django import template
+
 from news.models import Category
 
-rigister = template.Library()
+register = template.Library()
 
-@rigister.simple_tag()
-def get_categories():
+@register.simple_tag(name='get_list_categories')
+def get_categories(): #Теперь данный тег получает список категорий.
     return Category.objects.all()
+
+
+@register.inclusion_tag('news/list_categories.html')
+def show_categories(arg1='Hellow', arg2='World'): #Данный тег получает данные, рендерит шаблон и возвращает шаблон с данными
+    categories = Category.objects.all()
+    return {'categories': categories, 'arg1': arg1, 'arg2': arg2}
